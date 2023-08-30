@@ -12,7 +12,7 @@ export type RouterMetaTypes = { [key: string] : RouteMetaType | RouteMetaType[] 
 
 const routerMeta: RouterMetaTypes = {
   Home: { path: '/' },
-  TwoImage: ['/two_image'],
+  TwoImage: [{ path: '/two_image/:id', hide: true }, { path: '/two_image' }],
   FourChoice: [{ path: '/four_choice/:id', hide: true }, { path: '/four_choice' }],
   End: [{ path: '/end', hide: true }],
 }

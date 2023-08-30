@@ -1,17 +1,13 @@
 {
-  "name": "react-ainize-boilerplate",
+  "name": "ai-runner",
   "version": "1.0.0",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/gongdongho12/react-ainize-boilerplate"
+    "url": "https://github.com/gongdongho12/ai-runner"
   },
   "author": {
     "name": "Dongho Gang",
-    "email": "gongdongho12@gmail.com"
-  },
-  "bugs": {
-    "url": "https://github.com/gongdongho12/react-ainize-boilerplate/issues",
     "email": "gongdongho12@gmail.com"
   },
   "licenses": [
@@ -52,10 +48,10 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
-    "docker-build": "docker build -t dongho1596/react-ainize-boilerplate .",
-    "docker-deploy": "docker push dongho1596/react-ainize-boilerplate",
-    "docker-buildx-deploy": "docker buildx build --push --no-cache --platform linux/arm64/v8,linux/amd64 -t dongho1596/react-ainize-boilerplate .",
-    "docker-run": "docker run -d -p 80:80 dongho1596/react-ainize-boilerplate",
+    "docker-build": "docker build -t dongho1596/ai-runner .",
+    "docker-deploy": "docker push dongho1596/ai-runner",
+    "docker-buildx-deploy": "docker buildx build --push --no-cache --platform linux/arm64/v8,linux/amd64 -t dongho1596/ai-runner .",
+    "docker-run": "docker run -d -p 80:80 dongho1596/ai-runner",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
