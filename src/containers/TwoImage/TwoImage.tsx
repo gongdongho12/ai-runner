@@ -22,7 +22,7 @@ const TwoImage: FunctionComponent<ITwoImageProps> = (props) => {
   return (
     <DefaultLayout>
       <Card title={`${idNumber+1}. 지문`}>
-        {range(1, 2).map(i => {
+        {range(0, 1).map(i => {
           return <Card.Grid key={i} style={gridStyle} onClick={() => {
             const idx = idNumber + 1
             navigate(idx === 10 ? '/end' : `/two_image/${idx}`)
@@ -34,7 +34,7 @@ const TwoImage: FunctionComponent<ITwoImageProps> = (props) => {
 							backgroundPosition: "center",
 							backgroundSize: "cover",
 							backgroundRepeat: "no-repeat",
-							backgroundImage: `url(${imageUrl || generateIndexImage(idNumber)})`,
+							backgroundImage: `url(${imageUrl || generateIndexImage(idNumber + i * 10)})`,
 						}}
 					/>
           </Card.Grid>
