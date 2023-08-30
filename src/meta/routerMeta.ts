@@ -1,5 +1,4 @@
 import { RouteProps } from "react-router-dom"
-import FourChoice from '../containers/FourChoice/index';
 
 interface CustomRouteProps {
   title: string;
