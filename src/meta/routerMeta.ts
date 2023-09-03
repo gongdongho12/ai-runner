@@ -10,8 +10,8 @@ type RouteMetaType = (string | Omit<RouteProps, 'component'> & Partial<CustomRou
 export type RouterMetaTypes = { [key: string] : RouteMetaType | RouteMetaType[] } 
 
 const routerMeta: RouterMetaTypes = {
-  // Home: { path: '/' },
-  TwoImage: [{ path: '/:id', hide: true }, { path: '/' }],
+  Home: { path: '/' },
+  TwoImage: [{ path: '/tf/:id', hide: true }, { path: '/tf' }],
   // FourChoice: [{ path: '/four_choice/:id', hide: true }, { path: '/four_choice' }],
   End: [{ path: '/end', hide: true }],
 }

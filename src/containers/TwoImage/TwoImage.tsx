@@ -82,10 +82,10 @@ const TwoImage: FunctionComponent<ITwoImageProps> = (props) => {
 									const idx = idNumber + 1;
                   setAnswer((oldAnswer) => [
                     ...oldAnswer,
-                    i == answer,
+                    i != answer,
                   ]);
 									navigate(
-										idx === (meta?.length || 0) ? "/end" : `/${idx}`
+										idx === (meta?.length || 0) ? "/end" : `/tf/${idx}`
 									);
 								}}
 							>

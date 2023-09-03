@@ -16,6 +16,7 @@ const App: FunctionComponent<any> = () => {
     <ConfigProvider
       theme={{
         token: {
+          colorPrimary: "#f674c6",
           fontFamily: "'GmarketSansMedium', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'"
         },
       }}

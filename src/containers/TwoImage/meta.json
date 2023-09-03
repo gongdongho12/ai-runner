@@ -47,6 +47,6 @@
 	{
 		"question": "두 대상이 같으면 O, 다르면 X 를 누르세요",
 		"images": ["10-1.jpg", "10-2.jpg"],
-		"answer": 0
+		"answer": 1
 	}
 ]
