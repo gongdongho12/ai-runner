@@ -6,6 +6,8 @@ import { range } from "@/utils";
 import meta from "./meta.json";
 import FlexCenter from "@/components/FlexCenter";
 import FullCard from "@/components/FullCard";
+import { useSetRecoilState } from "recoil";
+import answerState from "@/state/answer";
 
 interface ITwoImageProps {}
 
@@ -14,9 +16,16 @@ const gridStyle: React.CSSProperties = {
 	textAlign: "center",
 };
 
+const o = "⭕"
+const x = "❌"
+
 const TwoImage: FunctionComponent<ITwoImageProps> = (props) => {
 	const navigate = useNavigate();
 	const { id } = useParams();
+  const setAnswer = useSetRecoilState(answerState);
+  if (id === undefined) {
+    setAnswer([])
+  }
 	const idNumber = id ? Number(id) : 0;
 	if (meta?.[idNumber] === undefined) {
 		navigate("/end");
@@ -32,7 +41,7 @@ const TwoImage: FunctionComponent<ITwoImageProps> = (props) => {
 		<DefaultLayout>
 			<FullCard>
 				<Card
-					title={`${idNumber + 1}. ${question}`}
+					title={`${idNumber + 1}. ${question.replace('O', o).replace('X', x)}`}
 					style={{ height: "100%", display: "flex", flexFlow: "column" }}
 					cover={
 						<FlexCenter
@@ -71,12 +80,16 @@ const TwoImage: FunctionComponent<ITwoImageProps> = (props) => {
 								style={gridStyle}
 								onClick={() => {
 									const idx = idNumber + 1;
+                  setAnswer((oldAnswer) => [
+                    ...oldAnswer,
+                    i == answer,
+                  ]);
 									navigate(
 										idx === (meta?.length || 0) ? "/end" : `/${idx}`
 									);
 								}}
 							>
-								{i % 2 == 0 ? "⭕" : "❌"}
+								{i % 2 == 0 ? o : x}
 							</Card.Grid>
 						);
 					})}
