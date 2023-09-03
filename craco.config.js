@@ -14,7 +14,9 @@ module.exports = {
 			options: {
 				lessLoaderOptions: {
 					lessOptions: {
-						modifyVars: {},
+						modifyVars: {
+							"@font-family": "'GmarketSansMedium', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'"
+						},
 						javascriptEnabled: true,
 					},
 				},
@@ -43,6 +45,6 @@ module.exports = {
 		},
 		plugins: [
 			new TsconfigPathsPlugin({ configFile: tsConfigPath })
-		],
+		]
 	}
 };

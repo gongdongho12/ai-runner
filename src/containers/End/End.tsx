@@ -7,7 +7,7 @@ interface IEndProps {
 
 const End: FunctionComponent<IEndProps> = (props) => {
   return <DefaultLayout>
-    <FlexCenter style={{ fontSize: 200 }}>
+    <FlexCenter style={{ fontSize: 200, overflow: 'auto' }}>
       End
     </FlexCenter>
   </DefaultLayout>;

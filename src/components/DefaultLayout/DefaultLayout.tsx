@@ -1,107 +1,76 @@
 import React, { FunctionComponent, useEffect, useMemo } from "react";
 import { Layout, Menu, Breadcrumb } from "antd";
 import { useIntl } from "react-intl";
-import { routerMeta } from '@/meta';
 
-import { Link, useLocation } from "react-router-dom";
-import LanguageSelector from "@/components/LanguageSelector";
-import { assignRouteArrayProps } from "@/utils";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const { Header, Content } = Layout;
 
 interface IDefaultLayoutProps {}
 
 const defaultStyle = {
-  height: "100%",
+	height: "100%",
 };
 
 const menuStyle = {
-  width: '100%',
-  display: 'flex'
-}
-
-const defaultMenus = Object.keys(routerMeta).reduce((prev: any[], componentKey: string) => {
-  const propsArr: any = assignRouteArrayProps(routerMeta[componentKey])
-  const { path } = assignRouteArrayProps(routerMeta[componentKey])
-  const getPath = (path: string) => (path.match(/\//gi) || []).length
-
-  const pathWIthSlashLengthArr: any | any[] = Array.isArray(propsArr) ? propsArr.map(({ path, ...rest }) => ({ path, length: getPath(path), ...rest })) : ({ path, length: getPath(path) })
-
-  if (Array.isArray(pathWIthSlashLengthArr)) {
-    const assignPathData = pathWIthSlashLengthArr.reduce((prevArr, { path, hide = false, length }) => {
-      if (hide) {
-        return prevArr
-      }
-      if (length === 1) {
-        return [...prevArr, { componentKey, path }]
-      } else {
-        return prevArr
-      }
-    }, [])
-    return [...prev, ...assignPathData]
-  } else {
-    const { path, length } = pathWIthSlashLengthArr
-    if (length === 1) {
-      return [...prev, { componentKey, path }]
-    } else {
-      return prev
-    }
-  }
-}, [])
+	width: "100%",
+	display: "flex",
+};
 
 const DefaultLayout: FunctionComponent<IDefaultLayoutProps> = (props) => {
-  const { children } = props;
-  const { formatMessage: fm } = useIntl();
-  const location = useLocation();
+	const { children } = props;
+	const { formatMessage: fm } = useIntl();
+	const location = useLocation();
+	const navigate = useNavigate();
 
-  useEffect(() => {
-    console.log('pathname', location.pathname)
-  }, [location])
+	useEffect(() => {
+		console.log("pathname", location.pathname);
+	}, [location]);
 
-  const pathDom = useMemo(() => {
-    const { pathname } = location
-    const pathArray = pathname.split('/')
-    const emptyToSpace = (text: string) => text === '' ? ' ' : text
-    return pathArray.map(path => <Breadcrumb.Item key={path}>{emptyToSpace(path)}</Breadcrumb.Item>)
-  }, [location])
+	const pathDom = useMemo(() => {
+		const { pathname } = location;
+		const pathArray = pathname.split("/");
+		const emptyToSpace = (text: string) => (text === "" ? " " : text);
+		return pathArray.map((path) => (
+			<Breadcrumb.Item key={path}>{emptyToSpace(path)}</Breadcrumb.Item>
+		));
+	}, [location]);
 
-  return (
-    <Layout style={defaultStyle}>
-      <Header className="header" style={{ display: "flex" }}>
-        <div className="logo" style={{
-          color: "white", width: 250, cursor: 'pointer'
-        }}>
-          {fm({ id: "title" })}
-        </div>
-        <Menu theme="dark" mode="horizontal" style={menuStyle} activeKey={location.pathname} selectable={false}>
-          {defaultMenus.map(({ componentKey, path }) => <Menu.Item key={path}>
-            <Link to={path}>{componentKey} ({path})</Link>
-          </Menu.Item>)}
-
-          <Menu.Item key="language-selector" disabled style={{ opacity: 1, marginLeft: 'auto' }}>
-            <LanguageSelector />
-          </Menu.Item>
-        </Menu>
-      </Header>
-      <Layout>
-        <Layout style={{ padding: "0 24px 24px" }}>
-          <Breadcrumb style={{ margin: "16px 0" }}>
-            {pathDom}
-          </Breadcrumb>
-          <Content
-            className="site-layout-background"
-            style={{
-              padding: 24,
-              margin: 0,
-              minHeight: 280,
-            }}
-          >
-            {children}
-          </Content>
-        </Layout>
-      </Layout>
-    </Layout>
-  );
+	return (
+		<Layout style={defaultStyle}>
+			<Header
+				className="header"
+				style={{ display: "flex", backgroundColor: "mediumvioletred" }}
+			>
+				<div
+					className="logo"
+					style={{
+						color: "white",
+						width: 250,
+						cursor: "pointer",
+					}}
+          role="presentation"
+					onClick={() => navigate('/')}
+				>
+					{fm({ id: "title" })}
+				</div>
+			</Header>
+			<Layout>
+				<Layout>
+					<Content
+						className="site-layout-background"
+						style={{
+							padding: 14,
+							margin: 0,
+							minHeight: 280,
+						}}
+					>
+						{children}
+					</Content>
+				</Layout>
+			</Layout>
+		</Layout>
+	);
 };
 
 export default DefaultLayout;
