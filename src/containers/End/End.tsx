@@ -24,10 +24,8 @@ const ResultBar: FunctionComponent<IDemoBarProps> = ({ data }) => {
     yField: 'solution',
     seriesField: 'solution',
     legend: null,
-    width: '100%',
-    height: '100%'
   };
-  return <Bar {...config} style={{ width: '100%', height: '100%' }} />;
+  return <Bar {...config} style={{ display: 'flex', flex: 1, width: 'calc(100% - 60px)' }} />;
 };
 
 const End: FunctionComponent = (props) => {
